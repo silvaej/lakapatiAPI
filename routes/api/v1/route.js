@@ -24,12 +24,12 @@ router.post("/api/v1/register", (req, res) => {
     query
         .save()
         .then(() => {
-            res.status(200).json({
+            res.json({
                 message: "User created successfully",
             });
         })
         .catch((err) => {
-            res.status(500).json({
+            res.json({
                 type: "UserExistsError",
                 message: "User already exists",
             });
