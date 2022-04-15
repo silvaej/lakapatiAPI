@@ -44,18 +44,18 @@ router.post("/api/v1/login", (req, res) => {
     User.findOne({ username })
         .then((user) => {
             if (!user) {
-                res.status(401).json({
+                res.json({
                     passed: false,
                     message: "UserNotFoundError",
                 });
             } else {
                 if (user.password === password) {
-                    res.status(200).json({
+                    res.json({
                         passed: true,
                         message: "User logged in successfully",
                     });
                 } else {
-                    res.status(401).json({
+                    res.json({
                         passed: false,
                         message: "PasswordError",
                     });
@@ -63,7 +63,7 @@ router.post("/api/v1/login", (req, res) => {
             }
         })
         .catch((err) => {
-            res.status(500).json({
+            res.json({
                 passed: false,
                 message: "InternalError",
             });
