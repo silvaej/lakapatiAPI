@@ -1,7 +1,12 @@
 import express from "express";
+import req from "express/lib/request";
 import User from "../../../models/userSchema.js";
 
 const router = express.Router();
+
+router.get("/", (req, res) => {
+    res.send("Hello World");
+});
 
 router.post("/api/v1/register", (req, res) => {
     // parse the request body
