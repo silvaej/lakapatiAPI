@@ -45,26 +45,27 @@ router.post("/api/v1/login", (req, res) => {
         .then((user) => {
             if (!user) {
                 res.status(401).json({
-                    type: "UserNotFoundError",
-                    message: "User not found",
+                    passed: false,
+                    message: "UserNotFoundError",
                 });
             } else {
                 if (user.password === password) {
                     res.status(200).json({
+                        passed: true,
                         message: "User logged in successfully",
                     });
                 } else {
                     res.status(401).json({
-                        type: "PasswordError",
-                        message: "Password is incorrect",
+                        passed: false,
+                        message: "PasswordError",
                     });
                 }
             }
         })
         .catch((err) => {
             res.status(500).json({
-                type: "InternalError",
-                message: "Internal server error",
+                passed: false,
+                message: "InternalError",
             });
         });
 });
