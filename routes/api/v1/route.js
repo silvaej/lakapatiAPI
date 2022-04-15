@@ -25,13 +25,14 @@ router.post("/api/v1/register", (req, res) => {
         .save()
         .then(() => {
             res.json({
+                passed: true,
                 message: "User created successfully",
             });
         })
         .catch((err) => {
             res.json({
-                type: "UserExistsError",
-                message: "User already exists",
+                passed: false,
+                message: "UserExistsError",
             });
         });
 });
