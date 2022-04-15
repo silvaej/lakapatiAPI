@@ -1,5 +1,4 @@
 import express from "express";
-import req from "express/lib/request";
 import User from "../../../models/userSchema.js";
 
 const router = express.Router();
