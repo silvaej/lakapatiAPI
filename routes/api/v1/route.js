@@ -1,5 +1,8 @@
 import express from "express";
 import User from "../../../models/userSchema.js";
+import Data from "../../../models/fieldSchema.js";
+import mapData from "../../../scripts/geoMapping.js";
+import sendEmail from "../../../scripts/sendEmail.js";
 
 const router = express.Router();
 
@@ -71,15 +74,40 @@ router.post("/api/v1/login", (req, res) => {
         });
 });
 
-router.post("/api/v1/upload", (req, res) => {
-    console.log(req.body);
-    console.log(req.files);
+router.post("/api/v1/upload", async (req, res) => {
+    // parse the request body
+    const username = req.body.username;
+    const email = req.body.email;
+    const title = req.body.title;
+    const description = req.body.description;
+    const data = req.body.data;
 
-    res.send("DONE!");
-});
+    mapData(data)
+        .then((result) => {
+            const query = new Data({
+                username,
+                email,
+                title,
+                description,
+                data: result,
+            });
 
-router.get("/api/v1/info", (req, res) => {
-    res.send("info");
+            const id = query._id;
+
+            query.save();
+
+            return { result, email, id };
+        })
+        .then((output) => {
+            const { result, email, id } = output;
+            sendEmail(email, result, id);
+        })
+        .then(() => {
+            res.json({
+                passed: true,
+                message: "Data uploaded successfully",
+            });
+        });
 });
 
 export default router;

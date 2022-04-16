@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const field = new mongoose.Schema({
-    name: {
+    username: {
         type: String,
         required: true,
     },
@@ -9,13 +9,20 @@ const field = new mongoose.Schema({
         type: Date,
         default: Date.now,
     },
-    leaves: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Leaf",
-            required: true,
-        },
-    ],
+    title: {
+        type: String,
+        required: true,
+        default: "Untitled",
+    },
+    description: {
+        type: String,
+        required: true,
+        default: "no description",
+    },
+    data: {
+        type: Buffer,
+        required: true,
+    },
 });
 
-export default mongoose.model("Field", field);
+export default mongoose.model("Data", field);
