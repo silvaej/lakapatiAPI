@@ -83,30 +83,36 @@ router.post("/api/v1/upload", async (req, res) => {
     const data = req.body.data;
 
     mapData(data)
-        .then((result) => {
+        .then((map) => {
             const query = new Data({
                 username,
                 email,
                 title,
                 description,
-                data: result,
+                data: map,
             });
 
             const id = query._id;
 
             query.save();
 
-            return { result, email, id };
+            return { map, email, id };
         })
         .then((output) => {
-            const { result, email, id } = output;
-            sendEmail(email, result, id);
-        })
-        .then(() => {
-            res.json({
-                passed: true,
-                message: "Data uploaded successfully",
-            });
+            const { map, email, id } = output;
+            sendEmail(email, map, id)
+                .then((result) => {
+                    res.json({
+                        passed: true,
+                        message: result,
+                    });
+                })
+                .catch((err) => {
+                    res.json({
+                        passed: false,
+                        message: err,
+                    });
+                });
         });
 });
 
