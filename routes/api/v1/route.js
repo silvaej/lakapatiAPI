@@ -116,4 +116,30 @@ router.post("/api/v1/upload", async (req, res) => {
         });
 });
 
+router.get("/api/v1/map", (req, res) => {
+    // parse the query string
+    const id = req.query.id;
+
+    Data.findOne({ _id: id })
+        .then((data) => {
+            if (!data) {
+                res.json({
+                    passed: false,
+                    message: "DataNotFoundError",
+                });
+            } else {
+                res.json({
+                    passed: true,
+                    message: "Successful",
+                });
+            }
+        })
+        .catch((err) => {
+            res.json({
+                passed: false,
+                message: "InternalError",
+            });
+        });
+});
+
 export default router;

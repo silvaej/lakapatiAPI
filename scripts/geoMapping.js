@@ -33,13 +33,13 @@ const mapData = async (data) => {
     let MIN_X = Number.MAX_VALUE;
     let MIN_Y = Number.MAX_VALUE;
 
-    const COLOR_MAP = {
-        cbb: "#ff5c77",
-        cbsd: "#ffec59",
-        cgm: "#ffa23a",
-        cmd: "#74737a",
-        healthy: "#4dd091",
-    };
+    // const COLOR_MAP = {
+    //     cbb: "#ff5c77",
+    //     cbsd: "#ffec59",
+    //     cgm: "#ffa23a",
+    //     cmd: "#74737a",
+    //     healthy: "#4dd091",
+    // };
 
     const markings = [];
 
