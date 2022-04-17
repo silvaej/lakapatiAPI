@@ -126,11 +126,19 @@ router.get("/api/v1/map", (req, res) => {
                 res.json({
                     passed: false,
                     message: "DataNotFoundError",
+                    title: "",
+                    description: "",
                 });
             } else {
+                // parse data
+                const title = data.title;
+                const description = data.description;
+
                 res.json({
                     passed: true,
                     message: "Successful",
+                    title,
+                    description,
                 });
             }
         })
@@ -138,6 +146,8 @@ router.get("/api/v1/map", (req, res) => {
             res.json({
                 passed: false,
                 message: "InternalError",
+                title: "",
+                description: "",
             });
         });
 });
