@@ -145,7 +145,7 @@ router.get("/api/v1/map", (req, res) => {
         .catch((err) => {
             res.json({
                 passed: false,
-                message: "InternalError",
+                message: "MapNotFoundError",
                 title: "",
                 description: "",
             });
