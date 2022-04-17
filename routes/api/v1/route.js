@@ -160,16 +160,17 @@ router.get("/api/v1/resend", (req, res) => {
     Data.findOne({ _id: id })
         .then((data) => {
             if (!data) {
+                console.log("here");
                 res.json({
                     passed: false,
                     message: "DataNotFoundError",
                 });
             } else {
                 // get data
-                const data = data.data;
+                const attachment = data.data;
 
                 // send email
-                sendEmail(email, data, id)
+                sendEmail(email, attachment, id)
                     .then((result) => {
                         res.json({
                             passed: true,
@@ -187,7 +188,7 @@ router.get("/api/v1/resend", (req, res) => {
         .catch((err) => {
             res.json({
                 passed: false,
-                message: "DataNotFoundError",
+                message: "InternalError",
             });
         });
 });
