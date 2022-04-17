@@ -152,4 +152,44 @@ router.get("/api/v1/map", (req, res) => {
         });
 });
 
+router.get("/api/v1/resend", (req, res) => {
+    // parse the query string
+    const email = req.query.email;
+    const id = req.query.id;
+
+    Data.findOne({ _id: id })
+        .then((data) => {
+            if (!data) {
+                res.json({
+                    passed: false,
+                    message: "DataNotFoundError",
+                });
+            } else {
+                // get data
+                const data = data.data;
+
+                // send email
+                sendEmail(email, data, id)
+                    .then((result) => {
+                        res.json({
+                            passed: true,
+                            message: "Successful",
+                        });
+                    })
+                    .catch((err) => {
+                        res.json({
+                            passed: false,
+                            message: err,
+                        });
+                    });
+            }
+        })
+        .catch((err) => {
+            res.json({
+                passed: false,
+                message: "DataNotFoundError",
+            });
+        });
+});
+
 export default router;
