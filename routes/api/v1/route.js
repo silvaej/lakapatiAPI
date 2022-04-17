@@ -47,21 +47,31 @@ router.post("/api/v1/login", (req, res) => {
 
     User.findOne({ username })
         .then((user) => {
+            console.log(user);
             if (!user) {
                 res.json({
                     passed: false,
                     message: "UserNotFoundError",
+                    username: "",
+                    email: "",
+                    name: "",
                 });
             } else {
                 if (user.password === password) {
                     res.json({
                         passed: true,
                         message: "User logged in successfully",
+                        username: user.username,
+                        email: user.email,
+                        name: user.name,
                     });
                 } else {
                     res.json({
                         passed: false,
                         message: "PasswordError",
+                        username: "",
+                        email: "",
+                        name: "",
                     });
                 }
             }
@@ -70,6 +80,9 @@ router.post("/api/v1/login", (req, res) => {
             res.json({
                 passed: false,
                 message: "InternalError",
+                username: "",
+                email: "",
+                name: "",
             });
         });
 });
