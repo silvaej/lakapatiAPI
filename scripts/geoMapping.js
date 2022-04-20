@@ -50,7 +50,14 @@ const mapData = async (data) => {
         const { x, y } = imageLocation;
 
         const { longitudeAbsoluteDegrees, latitudeAbsoluteDegrees } =
-            generateAbsolutePosition(latitude, longitude, x, y);
+            generateAbsolutePosition(
+                latitude,
+                longitude,
+                x,
+                y,
+                imageData.width,
+                imageData.height
+            );
 
         // Checking max and min values
         if (longitudeAbsoluteDegrees > MAX_X) {

@@ -1,10 +1,10 @@
-const generateAbsolutePosition = (latitude, longitude, x, y) => {
+const generateAbsolutePosition = (latitude, longitude, x, y, width, height) => {
     // This is as if the image is taken from 3m above the ground (cm)
     const SPATIAL_RESOLUTION = 0.1082954299;
 
     // This is the size of the image (default at 4000x3000)
-    const IMAGE_WIDTH = 4000;
-    const IMAGE_HEIGHT = 3000;
+    const IMAGE_WIDTH = width;
+    const IMAGE_HEIGHT = height;
 
     // Calculte how many pixels the image is from the center of the map
     const xDistance = IMAGE_WIDTH / 2 - x;
