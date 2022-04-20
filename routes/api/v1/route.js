@@ -117,7 +117,7 @@ router.post("/api/v1/upload", async (req, res) => {
                 .then((result) => {
                     res.json({
                         passed: true,
-                        message: "Sucess",
+                        message: "Map ID : " + id,
                     });
                 })
                 .catch((err) => {
