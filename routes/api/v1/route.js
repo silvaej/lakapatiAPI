@@ -117,13 +117,13 @@ router.post("/api/v1/upload", async (req, res) => {
                 .then((result) => {
                     res.json({
                         passed: true,
-                        message: result,
+                        message: "Sucess",
                     });
                 })
                 .catch((err) => {
                     res.json({
                         passed: false,
-                        message: err,
+                        message: "MailSendingError",
                     });
                 });
         });
