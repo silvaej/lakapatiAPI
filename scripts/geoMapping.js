@@ -82,11 +82,11 @@ const mapData = async (data) => {
     }
 
     // Add padding
-    const PADDING = 5;
-    MIN_X -= PADDING;
-    MIN_Y -= PADDING;
-    MAX_X += PADDING;
-    MAX_Y += PADDING;
+    // const PADDING = 0.2;
+    // MIN_X -= PADDING;
+    // MIN_Y -= PADDING;
+    // MAX_X += PADDING;
+    // MAX_Y += PADDING;
 
     // Calculate the size of the image in meters
     const canvasWidthMeters = calculateDistance(MIN_Y, MIN_X, MIN_Y, MAX_X);
@@ -111,7 +111,7 @@ const mapData = async (data) => {
         // calculate the start of the canvas in pixels in degrees
         canvasStartLongitudeDegrees = MIN_X;
         // need to adjust to conpensate for the aspect ratio
-        canvasStartLatitudeDegrees = MIN_Y + degreePerPixel * 3000 * 0.9;
+        canvasStartLatitudeDegrees = MIN_Y + degreePerPixel * 3000;
 
         // calculate the end of the canvas in pixels in degrees
         canvasEndLongitudeDegrees = MAX_X;
@@ -130,7 +130,7 @@ const mapData = async (data) => {
         canvasStartLatitudeDegrees = MAX_Y;
 
         // calculate the end of the canvas in pixels in degrees
-        canvasEndLongitudeDegrees = MIN_X + degreePerPixel * 4000 * 0.9;
+        canvasEndLongitudeDegrees = MIN_X + degreePerPixel * 4000;
         // need to adjust to conpensate for the aspect ratio+
         canvasEndLatitudeDegrees = MIN_Y;
     }
