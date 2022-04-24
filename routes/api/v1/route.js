@@ -115,6 +115,7 @@ router.post("/api/v1/upload", async (req, res) => {
             const { map, email, id } = output;
             sendEmail(email, map, id)
                 .then((result) => {
+                    console.log(result);
                     res.json({
                         passed: true,
                         message: "Map ID : " + id,
