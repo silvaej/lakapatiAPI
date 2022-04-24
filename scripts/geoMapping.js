@@ -82,11 +82,14 @@ const mapData = async (data) => {
     }
 
     // Add padding
-    // const PADDING = 0.2;
-    // MIN_X -= PADDING;
-    // MIN_Y -= PADDING;
-    // MAX_X += PADDING;
-    // MAX_Y += PADDING;
+    const HORIZONTAL_PADDING = (MAX_X - MIN_X) * 0.05;
+    const VERTICAL_PADDING = (MAX_Y - MIN_Y) * 0.05;
+
+    // update min max value
+    MAX_X += HORIZONTAL_PADDING;
+    MIN_X -= HORIZONTAL_PADDING;
+    MAX_Y += VERTICAL_PADDING;
+    MIN_Y -= VERTICAL_PADDING;
 
     // Calculate the size of the image in meters
     const canvasWidthMeters = calculateDistance(MIN_Y, MIN_X, MIN_Y, MAX_X);
