@@ -38,8 +38,8 @@ const sendMail = async (email, attachment, id) => {
         const mailOptions = {
             from: process.env.EMAIL_USER,
             to: email,
-            subject: "Map",
-            text: `Map with id: ${id}`,
+            subject: "Lakapati Result Mapping",
+            text: `Thank you for using Lakapati. \nAttached below is the mapping of the results.\n\tMap with id: ${id}`,
             attachments: [file],
         };
 

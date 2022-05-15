@@ -33,14 +33,6 @@ const mapData = async (data) => {
     let MIN_X = Number.MAX_VALUE;
     let MIN_Y = Number.MAX_VALUE;
 
-    // const COLOR_MAP = {
-    //     cbb: "#ff5c77",
-    //     cbsd: "#ffec59",
-    //     cgm: "#ffa23a",
-    //     cmd: "#74737a",
-    //     healthy: "#4dd091",
-    // };
-
     const markings = [];
 
     for (let imageData of data) {
@@ -60,18 +52,10 @@ const mapData = async (data) => {
             );
 
         // Checking max and min values
-        if (longitudeAbsoluteDegrees > MAX_X) {
-            MAX_X = longitudeAbsoluteDegrees;
-        }
-        if (longitudeAbsoluteDegrees < MIN_X) {
-            MIN_X = longitudeAbsoluteDegrees;
-        }
-        if (latitudeAbsoluteDegrees > MAX_Y) {
-            MAX_Y = latitudeAbsoluteDegrees;
-        }
-        if (latitudeAbsoluteDegrees < MIN_Y) {
-            MIN_Y = latitudeAbsoluteDegrees;
-        }
+        if (longitudeAbsoluteDegrees > MAX_X) MAX_X = longitudeAbsoluteDegrees;
+        if (longitudeAbsoluteDegrees < MIN_X) MIN_X = longitudeAbsoluteDegrees;
+        if (latitudeAbsoluteDegrees > MAX_Y) MAX_Y = latitudeAbsoluteDegrees;
+        if (latitudeAbsoluteDegrees < MIN_Y) MIN_Y = latitudeAbsoluteDegrees;
 
         // Update markings
         markings.push({
@@ -137,12 +121,6 @@ const mapData = async (data) => {
         // need to adjust to conpensate for the aspect ratio+
         canvasEndLatitudeDegrees = MIN_Y;
     }
-
-    // Add 200 pixel padding on the edges
-    // canvasStartLongitudeDegrees -= degreePerPixel * 200;
-    // canvasStartLatitudeDegrees -= degreePerPixel * 200;
-    // canvasEndLatitudeDegrees += degreePerPixel * 200;
-    // canvasEndLongitudeDegrees += degreePerPixel * 200;
 
     // draw 10 x 10 grid lines with coordinates relative to the actual gps location with labels
     const gridLines = [];
